@@ -74,7 +74,7 @@ window.addEventListener("pageScript", function(event) {
         clearInterval(checktLoadedInterval);
         chrome.runtime.sendMessage({type: 'ajaxInterceptor', to: 'iframe', ...event.detail});
       }
-      if (count ++ > 500) {
+      if (count ++ > 900) {
         clearInterval(checktLoadedInterval);
       }
     }, 10);
