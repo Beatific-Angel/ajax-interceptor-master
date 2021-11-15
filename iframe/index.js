@@ -10,12 +10,6 @@ const DEFAULT_SETTING = {
 
 if (chrome.storage) {
   chrome.storage.local.get(['ajaxInterceptor_switchOn', 'ajaxInterceptor_rules'], (result) => {
-    // if (result.ajaxInterceptor_switchOn) {
-    //   this.set('ajaxInterceptor_switchOn', result.ajaxInterceptor_switchOn, false);
-    // }
-    // if (result.ajaxInterceptor_rules) {
-    //   this.set('ajaxInterceptor_rules', result.ajaxInterceptor_rules, false);
-    // }
     window.setting = {
       ...DEFAULT_SETTING,
       ...result,
@@ -28,7 +22,6 @@ if (chrome.storage) {
   });
 } else {
   window.setting = DEFAULT_SETTING;
-  // 测试环境
   ReactDOM.render(
     <Main />,
     document.getElementById('main')
