@@ -39,7 +39,6 @@ export default class Main extends Component {
         }
         this.setState({interceptedRequests}, () => {
           if (!exits) {
-            // 新增的拦截的url，会多展示一行url，需要重新计算高度
             this.updateAddBtnTop_interval();
           }
         })
@@ -71,7 +70,6 @@ export default class Main extends Component {
     }
   }
 
-  // 计算按钮位置
   updateAddBtnTop_interval = ({timeout = 1000, interval = 50 } = {}) => {
     const i = setInterval(this.updateAddBtnTop, interval);
     setTimeout(() => {
@@ -80,7 +78,6 @@ export default class Main extends Component {
   }
 
   set = (key, value) => {
-    // 发送给background.js
     chrome.runtime.sendMessage(chrome.runtime.id, {type: 'ajaxInterceptor', to: 'background', key, value});
     chrome.storage && chrome.storage.local.set({[key]: value});
   }
@@ -96,7 +93,6 @@ export default class Main extends Component {
     window.setting.ajaxInterceptor_rules[i].switchOn = switchOn;
     this.set('ajaxInterceptor_rules', window.setting.ajaxInterceptor_rules);
 
-    // 这么搞主要是为了能实时同步window.setting.ajaxInterceptor_rules，并且让性能好一点
     this.forceUpdateDebouce();
   }
 
@@ -201,26 +197,6 @@ export default class Main extends Component {
                       index={i}
                       set={this.set}
                     />
-                    {/* <div className="replace-with">
-                      Replace With:
-                    </div>
-                    <textarea
-                      className="overrideTxt"
-                      // placeholder="replace with"
-                      style={{resize: 'none'}}
-                      defaultValue={overrideTxt}
-                      onChange={e => this.handleOverrideTxtChange(e.target.value, i)}
-                    />
-                    <Switch onChange={this.handleEditorSwitch} checkedChildren="JSON editor" unCheckedChildren="JSON editor" size="small" />
-                    {this.state.showJSONEditor && <div className="JSONEditor">
-                      <ReactJson
-                        name=""
-                        src={JSON.parse(overrideTxt)}
-                        onEdit={val => this.handleJSONEditorChange(val, i)}
-                        onAdd={val => this.handleJSONEditorChange(val, i)}
-                        onDelete={val => this.handleJSONEditorChange(val, i)}
-                      />
-                    </div>} */}
                     {this.state.interceptedRequests[match] && (
                       <>
                         <div className="intercepted-requests">
