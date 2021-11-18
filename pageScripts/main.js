@@ -55,7 +55,6 @@ let ajax_interceptor_qoweifjqon = {
       if (typeof xhr[attr] === 'function') {
         this[attr] = xhr[attr].bind(xhr);
       } else {
-        // responseText和response不是writeable的，但拦截时需要修改它，所以修改就存储在this[`_${attr}`]上
         if (attr === 'responseText' || attr === 'response') {
           Object.defineProperty(this, attr, {
             get: () => this[`_${attr}`] == undefined ? xhr[attr] : this[`_${attr}`],
@@ -98,10 +97,6 @@ let ajax_interceptor_qoweifjqon = {
       if (txt !== undefined) {
         const stream = new ReadableStream({
           start(controller) {
-            // const bufView = new Uint8Array(new ArrayBuffer(txt.length));
-            // for (var i = 0; i < txt.length; i++) {
-            //   bufView[i] = txt.charCodeAt(i);
-            // }
             controller.enqueue(new TextEncoder().encode(txt));
             controller.close();
           }
