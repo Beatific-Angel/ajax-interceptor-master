@@ -1,5 +1,4 @@
 
-// 命名空间
 let ajax_interceptor_qoweifjqon = {
   settings: {
     ajaxInterceptor_switchOn: false,
@@ -36,9 +35,7 @@ let ajax_interceptor_qoweifjqon = {
       if (attr === 'onreadystatechange') {
         xhr.onreadystatechange = (...args) => {
           if (this.readyState == 4) {
-            // 请求成功
             if (ajax_interceptor_qoweifjqon.settings.ajaxInterceptor_switchOn) {
-              // 开启拦截
               modifyResponse();
             }
           }
@@ -47,9 +44,7 @@ let ajax_interceptor_qoweifjqon = {
         continue;
       } else if (attr === 'onload') {
         xhr.onload = (...args) => {
-          // 请求成功
           if (ajax_interceptor_qoweifjqon.settings.ajaxInterceptor_switchOn) {
-            // 开启拦截
             modifyResponse();
           }
           this.onload && this.onload.apply(this, args);
