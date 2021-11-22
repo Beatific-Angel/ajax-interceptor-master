@@ -54,7 +54,6 @@ if (window.self === window.top) {
 }
 
 
-// 接收background.js传来的信息，转发给pageScript
 chrome.runtime.onMessage.addListener(msg => {
   if (msg.type === 'ajaxInterceptor' && msg.to === 'content') {
     if (msg.hasOwnProperty('iframeScriptLoaded')) {
@@ -65,7 +64,6 @@ chrome.runtime.onMessage.addListener(msg => {
   }
 });
 
-// 接收pageScript传来的信息，转发给iframe
 window.addEventListener("pageScript", function(event) {
   if (iframeLoaded) {
     chrome.runtime.sendMessage({type: 'ajaxInterceptor', to: 'iframe', ...event.detail});
@@ -83,15 +81,4 @@ window.addEventListener("pageScript", function(event) {
   }
 }, false);
 
-// window.addEventListener("message", function(event) {
-// console.log(event.data)
-// }, false);
-
-// window.parent.postMessage({ type: "CONTENT", text: "Hello from the webpage!" }, "*");
-
-
-// var s = document.createElement('script');
-// s.setAttribute('type', 'text/javascript');
-// s.innerText = `console.log('test')`;
-// document.documentElement.appendChild(s);
 
