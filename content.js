@@ -1,5 +1,3 @@
-
-// 在页面上插入代码
 const script = document.createElement('script');
 script.setAttribute('type', 'text/javascript');
 script.setAttribute('src', chrome.extension.getURL('pageScripts/main.js'));
@@ -20,7 +18,6 @@ script.addEventListener('load', () => {
 let iframe;
 let iframeLoaded = false;
 
-// 只在最顶层页面嵌入iframe
 if (window.self === window.top) {
 
   document.onreadystatechange = () => {
