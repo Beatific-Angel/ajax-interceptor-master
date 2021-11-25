@@ -1,12 +1,3 @@
-// const elt = document.createElement("script");
-// elt.innerHTML = "window.test = 1"
-// document.head.appendChild(elt);
-
-// 在页面上插入代码
-// const s1 = document.createElement('script');
-// s1.setAttribute('type', 'text/javascript');
-// s1.setAttribute('src', chrome.extension.getURL('pageScripts/defaultSettings.js'));
-// document.documentElement.appendChild(s1);
 
 // 在页面上插入代码
 const script = document.createElement('script');
