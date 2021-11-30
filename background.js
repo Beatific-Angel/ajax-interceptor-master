@@ -44,7 +44,6 @@ chrome.browserAction.onClicked.addListener(function(tab) {
   })
 });
 
-// 接收iframe传来的信息，转发给content.js
 chrome.runtime.onMessage.addListener(msg => {
   if (msg.type === 'ajaxInterceptor' && msg.to === 'background') {
     if (msg.key === 'ajaxInterceptor_switchOn') {
